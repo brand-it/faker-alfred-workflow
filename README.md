@@ -1,4 +1,4 @@
-# Workflow that lets you create fake data
+# Alfred Workflow for creating fake data
 
 This uses the [faker gem](https://github.com/stympy/faker) and just reads threw the methods in the gem
 There is not designed for more complicated gem and if the gem does update it could create problem with
