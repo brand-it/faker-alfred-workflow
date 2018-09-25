@@ -8,19 +8,6 @@
 	<string>Productivity</string>
 	<key>connections</key>
 	<dict>
-		<key>0640FBCE-512A-4D1C-A508-137A217AA170</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>C9AFE4F0-E9C6-4917-80C3-6F88F3AD8F4D</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
 		<key>10E3948B-2BCB-44BF-BC82-C839C6E87CB1</key>
 		<array>
 			<dict>
@@ -57,8 +44,6 @@
 				<false/>
 			</dict>
 		</array>
-		<key>5CD3B9F0-3789-4139-8143-C641DC24A068</key>
-		<array/>
 		<key>6BC98500-FCF7-48DE-BC4D-0A4977A77143</key>
 		<array>
 			<dict>
@@ -128,19 +113,6 @@
 				<false/>
 			</dict>
 		</array>
-		<key>C9AFE4F0-E9C6-4917-80C3-6F88F3AD8F4D</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>5CD3B9F0-3789-4139-8143-C641DC24A068</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
 	</dict>
 	<key>createdby</key>
 	<string>Brandt Lareau</string>
@@ -152,70 +124,6 @@
 	<string>Faker</string>
 	<key>objects</key>
 	<array>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>alfredfiltersresults</key>
-				<true/>
-				<key>alfredfiltersresultsmatchmode</key>
-				<integer>0</integer>
-				<key>argumenttrimmode</key>
-				<integer>0</integer>
-				<key>argumenttype</key>
-				<integer>1</integer>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>keyword</key>
-				<string>{var:title}</string>
-				<key>queuedelaycustom</key>
-				<integer>3</integer>
-				<key>queuedelayimmediatelyinitially</key>
-				<true/>
-				<key>queuedelaymode</key>
-				<integer>0</integer>
-				<key>queuemode</key>
-				<integer>1</integer>
-				<key>runningsubtext</key>
-				<string>Loading Methods</string>
-				<key>script</key>
-				<string>require 'json'
-require './setup_faker'
-
-faker = Kernel.const_get(ENV['klass'])
-names = faker.methods(false).map do |method| 	
-  name = method.to_s.split('_').map(&amp;:capitalize).join(' ') 
-  {
-	uid: name.downcase,
-	type: 'default',
-	arg: method.to_s,
-	subtitle: method.to_s,
-	title: "Faker #{ENV['klass']} #{name}",
-	autocomplete: name
-  }
-end
-
-
-print({ items: names }.to_json)</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>subtext</key>
-				<string>lookup method within class</string>
-				<key>title</key>
-				<string>{var:title}</string>
-				<key>type</key>
-				<integer>2</integer>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>C9AFE4F0-E9C6-4917-80C3-6F88F3AD8F4D</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -232,42 +140,6 @@ print({ items: names }.to_json)</string>
 			<string>9FC7FC2B-AE2D-4FF2-9A1F-8B868E733445</string>
 			<key>version</key>
 			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argument</key>
-				<string></string>
-				<key>variables</key>
-				<dict>
-					<key>method</key>
-					<string>{query}</string>
-				</dict>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.argument</string>
-			<key>uid</key>
-			<string>5CD3B9F0-3789-4139-8143-C641DC24A068</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argument</key>
-				<string></string>
-				<key>variables</key>
-				<dict>
-					<key>klass</key>
-					<string>{query}</string>
-				</dict>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.argument</string>
-			<key>uid</key>
-			<string>0640FBCE-512A-4D1C-A508-137A217AA170</string>
-			<key>version</key>
-			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -561,15 +433,6 @@ end</string>
 	<string></string>
 	<key>uidata</key>
 	<dict>
-		<key>0640FBCE-512A-4D1C-A508-137A217AA170</key>
-		<dict>
-			<key>note</key>
-			<string>set klass</string>
-			<key>xpos</key>
-			<integer>160</integer>
-			<key>ypos</key>
-			<integer>200</integer>
-		</dict>
 		<key>10E3948B-2BCB-44BF-BC82-C839C6E87CB1</key>
 		<dict>
 			<key>xpos</key>
@@ -597,15 +460,6 @@ end</string>
 			<integer>590</integer>
 			<key>ypos</key>
 			<integer>680</integer>
-		</dict>
-		<key>5CD3B9F0-3789-4139-8143-C641DC24A068</key>
-		<dict>
-			<key>note</key>
-			<string>method</string>
-			<key>xpos</key>
-			<integer>530</integer>
-			<key>ypos</key>
-			<integer>200</integer>
 		</dict>
 		<key>6BC98500-FCF7-48DE-BC4D-0A4977A77143</key>
 		<dict>
@@ -654,13 +508,6 @@ end</string>
 			<integer>720</integer>
 			<key>ypos</key>
 			<integer>390</integer>
-		</dict>
-		<key>C9AFE4F0-E9C6-4917-80C3-6F88F3AD8F4D</key>
-		<dict>
-			<key>xpos</key>
-			<integer>280</integer>
-			<key>ypos</key>
-			<integer>130</integer>
 		</dict>
 		<key>DC3856AD-1676-451A-B91E-2A2C3245AA5C</key>
 		<dict>
