@@ -195,7 +195,7 @@ end</string>
 				<key>queuemode</key>
 				<integer>1</integer>
 				<key>runningsubtext</key>
-				<string>Loading Classes...</string>
+				<string>Downloading Faker Gem....</string>
 				<key>script</key>
 				<string>query = ARGV[0].to_s.downcase
 require 'json'
