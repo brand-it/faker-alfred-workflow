@@ -58,18 +58,7 @@
 			</dict>
 		</array>
 		<key>5CD3B9F0-3789-4139-8143-C641DC24A068</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>AE911C5C-6534-43A8-8A0D-CD7BF5187176</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
+		<array/>
 		<key>6BC98500-FCF7-48DE-BC4D-0A4977A77143</key>
 		<array>
 			<dict>
@@ -97,11 +86,21 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>0640FBCE-512A-4D1C-A508-137A217AA170</string>
+				<string>AE911C5C-6534-43A8-8A0D-CD7BF5187176</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>6BC98500-FCF7-48DE-BC4D-0A4977A77143</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string>Copy Method {query}</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -141,16 +140,6 @@
 				<key>vitoclose</key>
 				<false/>
 			</dict>
-			<dict>
-				<key>destinationuid</key>
-				<string>6BC98500-FCF7-48DE-BC4D-0A4977A77143</string>
-				<key>modifiers</key>
-				<integer>1048576</integer>
-				<key>modifiersubtext</key>
-				<string>copy ruby method</string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
 		</array>
 	</dict>
 	<key>createdby</key>
@@ -166,47 +155,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>autopaste</key>
-				<true/>
-				<key>clipboardtext</key>
-				<string>{query}</string>
-				<key>transient</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.clipboard</string>
-			<key>uid</key>
-			<string>9FC7FC2B-AE2D-4FF2-9A1F-8B868E733445</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>require './setup_faker'
-print Kernel.const_get(ENV['klass']).send(ENV['method'].to_sym)</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>2</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>AE911C5C-6534-43A8-8A0D-CD7BF5187176</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>alfredfiltersresults</key>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
@@ -218,7 +166,7 @@ print Kernel.const_get(ENV['klass']).send(ENV['method'].to_sym)</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>keyword</key>
-				<string>{var:klass}</string>
+				<string>{var:title}</string>
 				<key>queuedelaycustom</key>
 				<integer>3</integer>
 				<key>queuedelayimmediatelyinitially</key>
@@ -228,7 +176,7 @@ print Kernel.const_get(ENV['klass']).send(ENV['method'].to_sym)</string>
 				<key>queuemode</key>
 				<integer>1</integer>
 				<key>runningsubtext</key>
-				<string></string>
+				<string>Loading Methods</string>
 				<key>script</key>
 				<string>require 'json'
 require './setup_faker'
@@ -241,7 +189,7 @@ names = faker.methods(false).map do |method|
 	type: 'default',
 	arg: method.to_s,
 	subtitle: method.to_s,
-	title: name,
+	title: "Faker #{ENV['klass']} #{name}",
 	autocomplete: name
   }
 end
@@ -253,9 +201,9 @@ print({ items: names }.to_json)</string>
 				<key>scriptfile</key>
 				<string></string>
 				<key>subtext</key>
-				<string></string>
+				<string>lookup method within class</string>
 				<key>title</key>
-				<string>{var:klass}</string>
+				<string>{var:title}</string>
 				<key>type</key>
 				<integer>2</integer>
 				<key>withspace</key>
@@ -271,80 +219,17 @@ print({ items: names }.to_json)</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>alfredfiltersresults</key>
+				<key>autopaste</key>
 				<true/>
-				<key>alfredfiltersresultsmatchmode</key>
-				<integer>2</integer>
-				<key>argumenttrimmode</key>
-				<integer>0</integer>
-				<key>argumenttype</key>
-				<integer>1</integer>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>keyword</key>
-				<string>faker</string>
-				<key>queuedelaycustom</key>
-				<integer>3</integer>
-				<key>queuedelayimmediatelyinitially</key>
-				<true/>
-				<key>queuedelaymode</key>
-				<integer>0</integer>
-				<key>queuemode</key>
-				<integer>1</integer>
-				<key>runningsubtext</key>
-				<string></string>
-				<key>script</key>
-				<string>query = ARGV[0]
-require 'json'
-require './setup_faker'
-Faker::Base.instance_eval do
-  def descendants
-    @descendants ||= ObjectSpace.each_object(Class).select { |klass| klass &lt; self }.map(&amp;:to_s)
-  end
-end
-
-class String
-  def underscore
-    word = self.dup
-    word.gsub!(/::/, '/')
-    word.gsub!(/([A-Z]+)([A-Z][a-z])/,'\1_\2')
-    word.gsub!(/([a-z\d])([A-Z])/,'\1_\2')
-    word.tr!("-", "_")
-    word.downcase!
-    word
-  end
-end
-
-
-names = Faker::Base.descendants.map do |decendent| 	name = decendent.underscore.split('/').last.split('_').map(&amp;:capitalize).join(' ') 
-	{
-		uid: name.downcase,
-		type: 'default',
-		arg: decendent.to_s,
-		subtitle: decendent.to_s,
-		title: name,
-		autocomplete: name
-	}
-end
-
-print({ items: names }.to_json)</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>subtext</key>
-				<string>Look up something you would like to fake... anything</string>
-				<key>title</key>
-				<string>Faker</string>
-				<key>type</key>
-				<integer>2</integer>
-				<key>withspace</key>
-				<true/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>transient</key>
+				<false/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
+			<string>alfred.workflow.output.clipboard</string>
 			<key>uid</key>
-			<string>A611A784-AC83-4A0A-882E-E2DB3E99F6AE</string>
+			<string>9FC7FC2B-AE2D-4FF2-9A1F-8B868E733445</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -383,6 +268,129 @@ print({ items: names }.to_json)</string>
 			<string>0640FBCE-512A-4D1C-A508-137A217AA170</string>
 			<key>version</key>
 			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>require './setup_faker'
+faker_response = Kernel.const_get(ENV['class']).send(ENV['method'].to_sym)
+
+if faker_response.is_a?(Array)
+	print(faker_response.join(' '))
+else
+	print(faker_response)
+end</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>AE911C5C-6534-43A8-8A0D-CD7BF5187176</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>faker</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Loading Classes...</string>
+				<key>script</key>
+				<string>query = ARGV[0].to_s.downcase
+require 'json'
+require './setup_faker'
+
+class String
+  def underscore
+    word = self.dup
+    word.gsub!(/::/, '/')
+    word.gsub!(/([A-Z]+)([A-Z][a-z])/, '\1_\2')
+    word.gsub!(/([a-z\d])([A-Z])/, '\1_\2')
+    word.tr!('-', '_')
+    word.downcase!
+    word
+  end
+end
+
+Faker::Base.instance_eval do
+  def descendants
+    @descendants ||= ObjectSpace.each_object(Class).select { |klass| klass &lt; self }.map(&amp;:to_s)
+  end
+end
+
+items = []
+Faker::Base.descendants.each do |decendent|
+  decendent_name = decendent.underscore.split('/').last.split('_').map(&amp;:capitalize).join(' ')
+  decendent = Kernel.const_get(decendent)
+  decendent.methods(false).each do |method|
+    method_name = method.to_s.split('_').map(&amp;:capitalize).join(' ')
+    autocomplete = decendent_name.end_with?(method_name) ? decendent_name : "#{decendent_name} #{method_name}"
+    items.push(
+      uid: "#{decendent}.#{method}",
+      type: 'default',
+      arg: "#{decendent}.#{method}",
+      subtitle: "#{decendent}.#{method}",
+      title: "Faker #{autocomplete}",
+      autocomplete: autocomplete,
+      variables: {
+        class: decendent.to_s,
+        method: method.to_s
+      }
+    )
+  end
+end
+items = items.select { |item| item[:autocomplete].downcase.start_with?(query) }
+items.sort { |x, y| x[:autocomplete].length &lt;=&gt; y[:autocomplete].length }
+print({ items: items }.to_json)
+</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Look up something you would like to fake... anything</string>
+				<key>title</key>
+				<string>Faker</string>
+				<key>type</key>
+				<integer>2</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>A611A784-AC83-4A0A-882E-E2DB3E99F6AE</string>
+			<key>version</key>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -558,9 +566,9 @@ end</string>
 			<key>note</key>
 			<string>set klass</string>
 			<key>xpos</key>
-			<integer>350</integer>
+			<integer>160</integer>
 			<key>ypos</key>
-			<integer>270</integer>
+			<integer>200</integer>
 		</dict>
 		<key>10E3948B-2BCB-44BF-BC82-C839C6E87CB1</key>
 		<dict>
@@ -595,9 +603,9 @@ end</string>
 			<key>note</key>
 			<string>method</string>
 			<key>xpos</key>
-			<integer>610</integer>
+			<integer>530</integer>
 			<key>ypos</key>
-			<integer>270</integer>
+			<integer>200</integer>
 		</dict>
 		<key>6BC98500-FCF7-48DE-BC4D-0A4977A77143</key>
 		<dict>
@@ -625,9 +633,9 @@ end</string>
 		<key>A611A784-AC83-4A0A-882E-E2DB3E99F6AE</key>
 		<dict>
 			<key>xpos</key>
-			<integer>190</integer>
-			<key>ypos</key>
 			<integer>240</integer>
+			<key>ypos</key>
+			<integer>290</integer>
 		</dict>
 		<key>AE911C5C-6534-43A8-8A0D-CD7BF5187176</key>
 		<dict>
@@ -650,9 +658,9 @@ end</string>
 		<key>C9AFE4F0-E9C6-4917-80C3-6F88F3AD8F4D</key>
 		<dict>
 			<key>xpos</key>
-			<integer>430</integer>
+			<integer>280</integer>
 			<key>ypos</key>
-			<integer>240</integer>
+			<integer>130</integer>
 		</dict>
 		<key>DC3856AD-1676-451A-B91E-2A2C3245AA5C</key>
 		<dict>
