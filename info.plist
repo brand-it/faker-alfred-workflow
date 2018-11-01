@@ -144,36 +144,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>require './setup_faker'
-faker_response = Kernel.const_get(ENV['class']).send(ENV['method'].to_sym)
-
-if faker_response.is_a?(Array)
-	print(faker_response.join(' '))
-else
-	print(faker_response)
-end</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>2</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>AE911C5C-6534-43A8-8A0D-CD7BF5187176</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
@@ -240,7 +210,7 @@ Faker::Base.descendants.each do |decendent|
     )
   end
 end
-items = items.select { |item| item[:autocomplete].downcase.start_with?(query) }
+items = items.select { |item| item[:autocomplete].downcase.start_with?(query) || item[:autocomplete].downcase.include?(query) }
 items.sort { |x, y| x[:autocomplete].length &lt;=&gt; y[:autocomplete].length }
 print({ items: items }.to_json)
 </string>
@@ -261,6 +231,36 @@ print({ items: items }.to_json)
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>A611A784-AC83-4A0A-882E-E2DB3E99F6AE</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>require './setup_faker'
+faker_response = Kernel.const_get(ENV['class']).send(ENV['method'].to_sym)
+
+if faker_response.is_a?(Array)
+	print(faker_response.join(' '))
+else
+	print(faker_response)
+end</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>AE911C5C-6534-43A8-8A0D-CD7BF5187176</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -306,7 +306,7 @@ print({ items: items }.to_json)
 			<key>config</key>
 			<dict>
 				<key>argument</key>
-				<string>{var:klass}.{query}</string>
+				<string>{var:class}.{var:method}</string>
 				<key>variables</key>
 				<dict/>
 			</dict>
@@ -487,9 +487,9 @@ end</string>
 		<key>A611A784-AC83-4A0A-882E-E2DB3E99F6AE</key>
 		<dict>
 			<key>xpos</key>
-			<integer>240</integer>
+			<integer>370</integer>
 			<key>ypos</key>
-			<integer>290</integer>
+			<integer>240</integer>
 		</dict>
 		<key>AE911C5C-6534-43A8-8A0D-CD7BF5187176</key>
 		<dict>
