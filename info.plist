@@ -145,9 +145,9 @@
 			<key>config</key>
 			<dict>
 				<key>alfredfiltersresults</key>
-				<false/>
+				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
-				<integer>0</integer>
+				<integer>2</integer>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -167,51 +167,67 @@
 				<key>runningsubtext</key>
 				<string>Downloading Faker Gem....</string>
 				<key>script</key>
-				<string>query = ARGV[0].to_s.downcase
-require 'json'
-require './setup_faker'
+				<string>require 'json'
+require 'fileutils'
 
-class String
-  def underscore
-    word = self.dup
-    word.gsub!(/::/, '/')
-    word.gsub!(/([A-Z]+)([A-Z][a-z])/, '\1_\2')
-    word.gsub!(/([a-z\d])([A-Z])/, '\1_\2')
-    word.tr!('-', '_')
-    word.downcase!
-    word
+query = ARGV[0].to_s.downcase
+methods_cache_path = File.expand_path('./cache/methods.json').to_s
+FileUtils.mkdir(File.dirname(methods_cache_path)) unless Dir.exist?(File.dirname(methods_cache_path))
+items = if File.exist?(methods_cache_path)
+          if File.stat(methods_cache_path).mtime.to_i &lt; 180000
+            []
+          else
+            JSON.parse(File.read(methods_cache_path), symbolize_names: true)
+          end
+        else
+          []
+        end
+if items.empty?
+  require './setup_faker'
+
+  Faker::Config.locale = 'zh-CN'
+
+  class String
+    def underscore
+      word = self.dup
+      word.gsub!(/::/, '/')
+      word.gsub!(/([A-Z]+)([A-Z][a-z])/, '\1_\2')
+      word.gsub!(/([a-z\d])([A-Z])/, '\1_\2')
+      word.tr!('-', '_')
+      word.downcase!
+      word
+    end
   end
+
+  Faker::Base.instance_eval do
+    def descendants
+      @descendants ||= ObjectSpace.each_object(Class).select { |klass| klass &lt; self }.map(&amp;:to_s)
+    end
+  end
+
+  Faker::Base.descendants.each do |decendent|
+    decendent_name = decendent.underscore.split('/').last.split('_').map(&amp;:capitalize).join(' ')
+    decendent = Kernel.const_get(decendent)
+    decendent.methods(false).each do |method|
+      method_name = method.to_s.split('_').map(&amp;:capitalize).join(' ')
+      autocomplete = decendent_name.end_with?(method_name) ? decendent_name : "#{decendent_name} #{method_name}"
+      items.push(
+        uid: "#{decendent}.#{method}",
+        type: 'default',
+        arg: "#{decendent}.#{method}",
+        subtitle: "#{decendent}.#{method}",
+        title: "Faker #{autocomplete}",
+        autocomplete: autocomplete,
+        variables: {
+          class: decendent.to_s,
+          method: method.to_s
+        }
+      )
+    end
+  end
+  File.write(methods_cache_path, items.to_json)
 end
 
-Faker::Base.instance_eval do
-  def descendants
-    @descendants ||= ObjectSpace.each_object(Class).select { |klass| klass &lt; self }.map(&amp;:to_s)
-  end
-end
-
-items = []
-Faker::Base.descendants.each do |decendent|
-  decendent_name = decendent.underscore.split('/').last.split('_').map(&amp;:capitalize).join(' ')
-  decendent = Kernel.const_get(decendent)
-  decendent.methods(false).each do |method|
-    method_name = method.to_s.split('_').map(&amp;:capitalize).join(' ')
-    autocomplete = decendent_name.end_with?(method_name) ? decendent_name : "#{decendent_name} #{method_name}"
-    items.push(
-      uid: "#{decendent}.#{method}",
-      type: 'default',
-      arg: "#{decendent}.#{method}",
-      subtitle: "#{decendent}.#{method}",
-      title: "Faker #{autocomplete}",
-      autocomplete: autocomplete,
-      variables: {
-        class: decendent.to_s,
-        method: method.to_s
-      }
-    )
-  end
-end
-items = items.select { |item| item[:autocomplete].downcase.start_with?(query) || item[:autocomplete].downcase.include?(query) }
-items.sort { |x, y| x[:autocomplete].length &lt;=&gt; y[:autocomplete].length }
 print({ items: items }.to_json)
 </string>
 				<key>scriptargtype</key>
