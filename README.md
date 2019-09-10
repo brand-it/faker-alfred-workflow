@@ -4,4 +4,4 @@ This uses the [faker gem](https://github.com/stympy/faker). Some of the methods 
 
 [Download Workflow](https://github.com/newdark/faker-alfred-workflow/releases/download/1.1.5/Faker.alfredworkflow)
 
-![Faker Image](![Sep-10-2019 09-19-17](https://user-images.githubusercontent.com/13140/64631567-39426900-d3ac-11e9-87b7-eaeb2af5c4c5.gif)
+![Sep-10-2019 09-19-17](https://user-images.githubusercontent.com/13140/64631567-39426900-d3ac-11e9-87b7-eaeb2af5c4c5.gif)
