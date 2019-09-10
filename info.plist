@@ -139,37 +139,7 @@
 			<key>uid</key>
 			<string>9FC7FC2B-AE2D-4FF2-9A1F-8B868E733445</string>
 			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<true/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>require './setup_faker'
-faker_response = Kernel.const_get(ENV['class']).send(ENV['method'].to_sym)
-
-if faker_response.is_a?(Array)
-	print(faker_response.join(' '))
-else
-	print(faker_response)
-end</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>2</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>AE911C5C-6534-43A8-8A0D-CD7BF5187176</string>
-			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -178,6 +148,8 @@ end</string>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>2</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -277,6 +249,36 @@ print({ items: items }.to_json)</string>
 			<key>uid</key>
 			<string>A611A784-AC83-4A0A-882E-E2DB3E99F6AE</string>
 			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<true/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>require './setup_faker'
+faker_response = Kernel.const_get(ENV['class']).send(ENV['method'].to_sym)
+
+if faker_response.is_a?(Array)
+	print(faker_response.join(' '))
+else
+	print(faker_response)
+end</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>AE911C5C-6534-43A8-8A0D-CD7BF5187176</string>
+			<key>version</key>
 			<integer>2</integer>
 		</dict>
 		<dict>
@@ -315,7 +317,7 @@ print({ items: items }.to_json)</string>
 			<key>uid</key>
 			<string>C207DF48-BA65-420C-846A-0652F2512CD4</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -446,7 +448,7 @@ end</string>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string></string>
+	<string>Hooks into the faker ruby on rails gem. Just a easy way to access the methods and get some fake data as you need.</string>
 	<key>uidata</key>
 	<dict>
 		<key>10E3948B-2BCB-44BF-BC82-C839C6E87CB1</key>
@@ -533,6 +535,10 @@ end</string>
 			<integer>540</integer>
 		</dict>
 	</dict>
+	<key>variablesdontexport</key>
+	<array/>
+	<key>version</key>
+	<string>1.1.5</string>
 	<key>webaddress</key>
 	<string>lareaus.com</string>
 </dict>
